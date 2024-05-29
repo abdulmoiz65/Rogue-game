@@ -6,7 +6,7 @@ const App = () => {
   return (
 <>
 
-<Rogue />
+<Rogue  width={40} height={40} tilesize={16} />
 
 </>
 

@@ -1,23 +1,14 @@
 import React from 'react';
 
-
-const canvas = {
-    height :'265px',
-    width : '265px',
-    border : '1px solid black',
-
-}
-
-const Rogue = () => {
+const Rogue = ({ width, height, tilesize }) => {
+ 
   return (
-<>
-
-<canvas style={canvas}></canvas>
-
-</>
+    <canvas
+      width={width * tilesize}
+      height={height * tilesize}
+      style={{border : '1px solid'}}
+    ></canvas>
   );
 };
-
-
 
 export default Rogue;
