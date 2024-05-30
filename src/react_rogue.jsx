@@ -10,9 +10,9 @@ const [player,setplayer] = useState(new Player(1,1,tilesize));
 
 const handleInput = (action,data)=> {
     console.log(`handle input : $(action) : ${JSON.stringify(data)}`);
-    let newplayer = {...player};
-    newplayer.x += data.x * tilesize;
-    newplayer.y += data.y * tilesize;
+    let newplayer = new Player();
+    Object.assign(newplayer,player);
+    newplayer.move(data.x,data.y);
     setplayer(newplayer);
 }
 
