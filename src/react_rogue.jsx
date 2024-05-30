@@ -1,11 +1,12 @@
 import React , {useRef , useEffect ,useState} from 'react';
 import InputManager from './InputManager';
+import Player from './player';
 
 const Rogue = ({ width, height, tilesize }) => {
 
 const canvasRef = useRef();
 let inputManager = new InputManager();
-const [player,setplayer] = useState({x:64 , y:128});
+const [player,setplayer] = useState(new Player(1,1,tilesize));
 
 const handleInput = (action,data)=> {
     console.log(`handle input : $(action) : ${JSON.stringify(data)}`);
@@ -32,8 +33,7 @@ useEffect( () =>{
     console.log("draw a canvas");
     const ctx = canvasRef.current.getContext('2d');
     ctx.clearRect(0,0,width * tilesize ,height * tilesize); 
-    ctx.fillStyle="black";
-    ctx.fillRect(player.x,player.y,16,16,);
+    player.draw(ctx);
 })  
 
 return (
