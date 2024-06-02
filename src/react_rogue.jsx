@@ -1,12 +1,15 @@
 import React , {useRef , useEffect ,useState} from 'react';
 import InputManager from './InputManager';
+import World from "./world.js";
 import Player from './player';
 
 const Rogue = ({ width, height, tilesize }) => {
 
 const canvasRef = useRef();
 let inputManager = new InputManager();
+// define world and player 
 const [player,setplayer] = useState(new Player(1,1,tilesize));
+const [world , SetWorld] = useState(new World(width , height , tilesize));
 
 const handleInput = (action,data)=> {
     console.log(`handle input : $(action) : ${JSON.stringify(data)}`);
@@ -26,15 +29,16 @@ useEffect(()=>{
         {
             inputManager.unbindkeys();
             inputManager.unsubscribe(handleInput);
-        }
-})
+        };
+});
 
 useEffect( () =>{
     console.log("draw a canvas");
     const ctx = canvasRef.current.getContext('2d');
     ctx.clearRect(0,0,width * tilesize ,height * tilesize); 
+    world.draw(ctx);
     player.draw(ctx);
-})  
+});  
 
 return (
     <canvas
